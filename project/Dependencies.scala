@@ -12,7 +12,7 @@ object Dependencies {
     val circe            = "0.14.9"
     val redis            = "2.0.3"
     val http4sPrometheus = "0.25.0"
-    val http4s           = "0.23.33"
+    val http4s           = "0.23.34"
     val slf4j            = "2.0.17"
     val pureConfig       = "0.17.10"
 
