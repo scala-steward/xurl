@@ -15,7 +15,7 @@ yet another link shortener service but purely functional.
 | cats        | 2.13.0   |
 | cats-effect | 3.7.0    |
 | http4s      | 0.23.34  |
-| skunk       | 0.6.5    |
+| skunk       | 1.0.0    |
 | redis4cats  | 2.0.3    |
 | play-json   | 3.0.6    |
 | weaver      | 0.12.0   |
