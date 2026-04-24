@@ -1,11 +1,14 @@
 package xurl.health
 
 import cats.effect._
-import natchez.Trace.Implicits.noop
+import org.typelevel.otel4s.trace.Tracer
 import skunk._
 import weaver.IOSuite
 
 object SkunkHealthSuite extends IOSuite {
+
+  implicit val tracer: Tracer[IO] = Tracer.noop
+
   type Res = Resource[IO, Session[IO]]
 
   override def sharedResource: Resource[IO, Res] =

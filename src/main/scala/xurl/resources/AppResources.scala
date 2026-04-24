@@ -4,10 +4,9 @@ import xurl.config.AppConfig
 
 import cats.effect._
 import cats.effect.std.Console
-import cats.implicits._
 import dev.profunktor.redis4cats.effect.MkRedis
 import dev.profunktor.redis4cats.{ Redis, RedisCommands }
-import natchez.Trace.Implicits.noop
+import org.typelevel.otel4s.trace.Tracer
 import skunk._
 
 sealed abstract class AppResources[F[_]](
@@ -17,7 +16,9 @@ sealed abstract class AppResources[F[_]](
 
 object AppResources {
   def make[F[_]: Async: Console: MkRedis](conf: AppConfig): Resource[F, AppResources[F]] = {
-    lazy val pgPool: SessionPool[F] =
+    implicit val tracer: Tracer[F] = Tracer.noop
+
+    lazy val pgPool: Resource[F, Resource[F, Session[F]]] =
       Session.pooled[F](
         host = conf.db.host,
         port = conf.db.port,
