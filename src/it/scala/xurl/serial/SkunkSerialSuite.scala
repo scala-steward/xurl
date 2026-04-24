@@ -2,6 +2,7 @@ package xurl.serial
 
 import cats.effect._
 import cats.implicits._
+import org.typelevel.otel4s.metrics.Meter
 import org.typelevel.otel4s.trace.Tracer
 import skunk._
 import weaver.IOSuite
@@ -9,6 +10,7 @@ import weaver.IOSuite
 object SkunkSerialSuite extends IOSuite {
 
   implicit val tracer: Tracer[IO] = Tracer.noop
+  implicit val meter: Meter[IO]   = Meter.noop
 
   type Res = Resource[IO, Session[IO]]
 

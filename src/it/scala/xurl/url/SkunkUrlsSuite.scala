@@ -6,6 +6,7 @@ import xurl.url.model._
 
 import cats.effect._
 import cats.implicits._
+import org.typelevel.otel4s.metrics.Meter
 import org.typelevel.otel4s.trace.Tracer
 import skunk._
 import skunk.implicits._
@@ -14,6 +15,7 @@ import weaver.IOSuite
 object SkunkUrlsSuite extends IOSuite {
 
   implicit val tracer: Tracer[IO] = Tracer.noop
+  implicit val meter: Meter[IO]   = Meter.noop
 
   override def maxParallelism: Int = 1
   type Res = Resource[IO, Session[IO]]
