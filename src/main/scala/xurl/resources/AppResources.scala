@@ -22,14 +22,14 @@ object AppResources {
 
     for {
       pgPool <- Session.pooled[F](
-                  host = conf.db.host,
-                  port = conf.db.port,
-                  user = conf.db.user,
-                  database = conf.db.database,
-                  password = conf.db.password,
-                  max = conf.db.connections
-                )
-      redis  <- Redis[F].utf8(conf.cache.url)
+        host = conf.db.host,
+        port = conf.db.port,
+        user = conf.db.user,
+        database = conf.db.database,
+        password = conf.db.password,
+        max = conf.db.connections
+      )
+      redis <- Redis[F].utf8(conf.cache.url)
     } yield new AppResources[F](pgPool, redis) {}
   }
 }
